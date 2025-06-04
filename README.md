@@ -1,4 +1,4 @@
-# Misinformation Defense App
+# ScamSkibidi
 
 A mobile application designed to enhance awareness and defense against misinformation and cyberthreats. The app helps users learn, detect, report, and counter online scams through various tools and community features.
 
