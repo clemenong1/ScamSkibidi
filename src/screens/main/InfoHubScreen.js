@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import {
+  Image,
   Linking,
   ScrollView,
   StyleSheet,
@@ -18,8 +19,8 @@ export default function InfoHubScreen() {
     },
     {
       id: 'im',
-      name: 'IM AWARE',
-      url: 'https://www.imaware.sg/',
+      name: 'IMDA',
+      url: 'https://www.imda.gov.sg/business',
     },
     {
       id: 'dsta',
@@ -60,7 +61,27 @@ export default function InfoHubScreen() {
             style={styles.resourceButton}
             onPress={() => openUrl(resource.url)}
           >
-            <Text style={styles.resourceText}>{resource.name}</Text>
+            {resource.id === 'pofma' ? (
+              <Image
+                source={require('../../assets/pofma_logo.png')}
+                style={styles.pofmaLogo}
+                resizeMode="contain"
+              />
+            ) : resource.id === 'im' ? (
+              <Image
+                source={require('../../assets/imda_logo.png')}
+                style={styles.pofmaLogo}
+                resizeMode="contain"
+              />
+            ) : resource.id === 'dsta' ? (
+              <Image
+                source={require('../../assets/dsta_logo.jpg')}
+                style={styles.pofmaLogo}
+                resizeMode="contain"
+              />
+            ) : (
+              <Text style={styles.resourceText}>{resource.name}</Text>
+            )}
           </TouchableOpacity>
         ))}
       </View>
@@ -169,5 +190,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
     lineHeight: 20,
+  },
+  pofmaLogo: {
+    width: '110%',
+    height: '100%',
+    alignSelf: 'center',
   },
 }); 
