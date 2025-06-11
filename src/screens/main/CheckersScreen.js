@@ -1,11 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 export default function CheckersScreen({ navigation }) {
@@ -47,7 +47,10 @@ export default function CheckersScreen({ navigation }) {
       key={option.title}
       style={styles.checkerOption}
       onPress={() => {
-        // Handle checker option press
+        if (option.title === 'Check general facts!') {
+          navigation.navigate('GeneralFacts');
+        }
+        // Handle other checker options here
       }}
     >
       <View style={styles.optionContent}>

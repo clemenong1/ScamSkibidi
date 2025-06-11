@@ -14,6 +14,7 @@ import SignupScreen from './src/screens/auth/SignupScreen';
 import CheckersScreen from './src/screens/main/CheckersScreen';
 import CreatePostScreen from './src/screens/main/CreatePostScreen';
 import FeedScreen from './src/screens/main/FeedScreen';
+import GeneralFactsScreen from './src/screens/main/GeneralFactsScreen';
 import InfoHubScreen from './src/screens/main/InfoHubScreen';
 import ProfileScreen from './src/screens/main/ProfileScreen';
 
@@ -40,6 +41,16 @@ export const db = getFirestore(app);
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const CheckersStack = createNativeStackNavigator();
+
+function CheckersStackScreen() {
+  return (
+    <CheckersStack.Navigator screenOptions={{ headerShown: false }}>
+      <CheckersStack.Screen name="CheckersMain" component={CheckersScreen} />
+      <CheckersStack.Screen name="GeneralFacts" component={GeneralFactsScreen} />
+    </CheckersStack.Navigator>
+  );
+}
 
 function MainTabs() {
   return (
@@ -77,7 +88,7 @@ function MainTabs() {
       })}
     >
       <Tab.Screen name="Feed" component={FeedScreen} />
-      <Tab.Screen name="Checkers" component={CheckersScreen} />
+      <Tab.Screen name="Checkers" component={CheckersStackScreen} />
       <Tab.Screen name="Create" component={CreatePostScreen} />
       <Tab.Screen name="InfoHub" component={InfoHubScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
