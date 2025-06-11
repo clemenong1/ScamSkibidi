@@ -6,6 +6,11 @@ import {
   Text,
   TouchableOpacity,
   View
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 export default function CheckersScreen({ navigation }) {
@@ -47,10 +52,7 @@ export default function CheckersScreen({ navigation }) {
       key={option.title}
       style={styles.checkerOption}
       onPress={() => {
-        if (option.title === 'Unknown phone number called you?') {
-          navigation.navigate('PhoneCallMethod');
-        }
-        // Handle other checker option presses here if needed
+        // Handle checker option press
       }}
     >
       <View style={styles.optionContent}>
