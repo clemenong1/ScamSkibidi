@@ -1,11 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getReactNativePersistence, initializeAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import screens
 import LoginScreen from './src/screens/auth/LoginScreen';
@@ -21,14 +22,20 @@ const firebaseConfig = {
   apiKey: "AIzaSyDinWFYppTfTbqorhQnJ95Wn2eBCELYOas",
   authDomain: "scamskibidi.firebaseapp.com",
   projectId: "scamskibidi",
-  storageBucket: "scamskibidi.firebasestorage.app",
+  storageBucket: "scamskibidi.appspot.com",
   messagingSenderId: "722508386345",
   appId: "1:722508386345:web:a6b625e513529a4b84cc38"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+
+// Initialize Auth with AsyncStorage persistence
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});
+
+export { auth };
 export const db = getFirestore(app);
 
 const Stack = createNativeStackNavigator();
@@ -79,6 +86,17 @@ function MainTabs() {
 }
 
 export default function App() {
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    // This ensures Firebase is fully initialized before rendering
+    setIsInitialized(true);
+  }, []);
+
+  if (!isInitialized) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
