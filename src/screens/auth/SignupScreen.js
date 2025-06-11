@@ -1,15 +1,16 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import {
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import { auth } from '../../../App';
 
 export default function SignupScreen({ navigation }) {
   const [username, setUsername] = useState('');
@@ -19,7 +20,6 @@ export default function SignupScreen({ navigation }) {
 
   const handleSignup = async () => {
     try {
-      const auth = getAuth();
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(user, {
         displayName: username,
@@ -49,6 +49,7 @@ export default function SignupScreen({ navigation }) {
               placeholderTextColor="#666"
               value={username}
               onChangeText={setUsername}
+              autoComplete="username"
             />
           </View>
 
@@ -62,6 +63,7 @@ export default function SignupScreen({ navigation }) {
               onChangeText={setEmail}
               autoCapitalize="none"
               keyboardType="email-address"
+              autoComplete="email"
             />
           </View>
 
@@ -74,6 +76,7 @@ export default function SignupScreen({ navigation }) {
               value={password}
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
+              autoComplete="password-new"
             />
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
               <Ionicons name={showPassword ? 'eye-outline' : 'eye-off-outline'} size={24} color="#666" />
