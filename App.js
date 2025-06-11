@@ -15,6 +15,11 @@ import CheckersScreen from './src/screens/main/CheckersScreen';
 import CreatePostScreen from './src/screens/main/CreatePostScreen';
 import FeedScreen from './src/screens/main/FeedScreen';
 import InfoHubScreen from './src/screens/main/InfoHubScreen';
+import PhoneCallEnterNumberScreen from './src/screens/main/PhoneCallEnterNumberScreen';
+import PhoneCallMethodScreen from './src/screens/main/PhoneCallMethodScreen';
+import PhoneCallOtherAppScreen from './src/screens/main/PhoneCallOtherAppScreen';
+import PhoneCallReportedScreen from './src/screens/main/PhoneCallReportedScreen';
+import PhoneCallRiskAnalysisScreen from './src/screens/main/PhoneCallRiskAnalysisScreen';
 import ProfileScreen from './src/screens/main/ProfileScreen';
 
 // Firebase configuration
@@ -107,6 +112,11 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="MainApp" component={MainTabs} />
+        <Stack.Screen name="PhoneCallMethod" component={PhoneCallMethodScreen} />
+        <Stack.Screen name="PhoneCallEnterNumber" component={PhoneCallEnterNumberScreen} />
+        <Stack.Screen name="PhoneCallOtherApp" component={PhoneCallOtherAppScreen} />
+        <Stack.Screen name="PhoneCallRiskAnalysis" component={PhoneCallRiskAnalysisScreen} />
+        <Stack.Screen name="PhoneCallReported" component={PhoneCallReportedScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

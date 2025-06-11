@@ -1,11 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 export default function CheckersScreen({ navigation }) {
@@ -47,7 +47,10 @@ export default function CheckersScreen({ navigation }) {
       key={option.title}
       style={styles.checkerOption}
       onPress={() => {
-        // Handle checker option press
+        if (option.title === 'Unknown phone number called you?') {
+          navigation.navigate('PhoneCallMethod');
+        }
+        // Handle other checker option presses here if needed
       }}
     >
       <View style={styles.optionContent}>
